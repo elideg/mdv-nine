@@ -13,6 +13,24 @@
     },
     "dashboard": {
       "tags": []
+    },
+    "material": {
+      "tags": []
+    },
+    "core-data": {
+      "tags": []
+    },
+    "ui-login": {
+      "tags": []
+    },
+    "ui-toolbar": {
+      "tags": []
+    },
+    "wildcard": {
+      "tags": []
+    },
+    "ui-libaries": {
+      "tags": []
     }
   }
 }

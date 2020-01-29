@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title *ngIf="currentProject.id; else elseCreateNew">
+      <h1>
+        {{ originalTitle }}
+      </h1>
+    </mat-card-title>
+    <ng-template #elseCreateNew>
+      <h1>Create a New Project</h1>
+    </ng-template>
+  </mat-card-header>
+  <form [formGroup]=form #formDirective="ngForm" (ngSubmit)="saveForm(formDirective)">
+    <mat-card-content>
+
+      <mat-form-field class="w-100 d-flex">
+        <input matInput placeholder="Title" type="text" name="title" formControlName="title">
+        <mat-error *ngIf="form.get('title').hasError('required')">Required Field</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="w-100 d-flex">
+      <textarea matInput placeholder="Details" type="text" name="details" formControlName="details"></textarea>
+      <mat-error *ngIf="form.get('details').hasError('required')">Required Field</mat-error>
+      </mat-form-field>
+
+      <section class="w-100 d-flex">
+        <mat-slider matInput color="primary" thumbLabel name="percentComplete" min="0" max="100" formControlName="percentComplete"></mat-slider>
+        <h3>{{ currentProject.percentComplete }}% Complete</h3>
+      </section>
+
+      <section class="full-width d-flex">
+        <mat-checkbox matInput color="primary" formControlName="approved">Aprroved by Customers</mat-checkbox>
+      </section>
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button type="submit" mat-button color="primary"
+      [disabled]="form.invalid">{{ currentProject.id ? 'Update' : 'Create' }}</button>
+      <button type="button" mat-button (click)="cancelled.emit()">Cancel</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

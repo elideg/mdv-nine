@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Projects</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let project of projects" (click)="selected.emit(project)" class="mat-list-option">
+        <h3 mat-line>
+          {{project.title}}
+        </h3>
+        <p mat-line>
+          {{project.details}}
+        </p>
+        <button class="mr-2" mat-mini-fab [routerLink]="[project.id]">
+          <mat-icon>code</mat-icon>
+        </button>
+        <button mat-mini-fab (click)="deleted.emit(project); $event.stopImmediatePropagation()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

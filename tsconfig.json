@@ -15,7 +15,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@mdv-nine/material": ["libs/material/src/index.ts"],
+      "@mdv-nine/core-data": ["libs/core-data/src/index.ts"],
+      "@mdv-nine/ui-login": ["libs/ui-login/src/index.ts"],
+      "@mdv-nine/ui-toolbar": ["libs/ui-toolbar/src/index.ts"],
+      "@mdv-nine/wildcard": ["libs/wildcard/src/index.ts"],
+      "@mdv-nine/ui-libaries": ["libs/ui-libraries/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
