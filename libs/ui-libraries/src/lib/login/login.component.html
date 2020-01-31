@@ -12,10 +12,12 @@
             <input matInput formControlName="email" placeholder="Email" type="text" name="email">
             <mat-error *ngIf="form.get('email').hasError('email')">Enter Valid Email</mat-error>
             <mat-error *ngIf="form.get('email').hasError('required')">Required Field</mat-error>
+            <mat-hint>victor@avila.com</mat-hint>
           </mat-form-field>
           <mat-form-field>
             <input matInput formControlName="password" placeholder="Password" type="password" name="password">
             <mat-error *ngIf="form.get('email').hasError('required')">Required Field</mat-error>
+            <mat-hint>secret</mat-hint>
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
