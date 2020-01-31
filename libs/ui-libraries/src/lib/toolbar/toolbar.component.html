@@ -7,11 +7,20 @@
       <img src="assets/logo.png" alt="Logo">
     </span>
     <span class="title">
-      <!-- TITLE -->
+      {{title}}
     </span>
 
   <span class="spacer"></span>
-  <button class="login" mat-mini-fab [routerLink]="['/login']">
-    <mat-icon>person</mat-icon>
-  </button>
+
+  <span>
+    <button class="logout" mat-mini-fab (click)="logout()" *ngIf="authenticated$.value; else elseBlock">
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+    <ng-template #elseBlock>
+    <button class="login" mat-mini-fab (click)="login()">
+      <mat-icon>person</mat-icon>
+    </button>
+    </ng-template>
+  </span>
+
 </mat-toolbar>

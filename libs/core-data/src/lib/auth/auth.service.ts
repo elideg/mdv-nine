@@ -7,8 +7,8 @@ import { tap, filter, map, find } from 'rxjs/operators'
 import { User } from '../project/project';
 import { NotifyService } from '../notify.service';
 
-const UrlForSignIn = 'https://mdv-db.herokuapp.com/login';
-const UrlForSignUp = 'https://mdv-db.herokuapp.com/signup';
+const UrlForSignIn = 'https://mdv-auth-json-server.herokuapp.com/auth/login';
+const UrlForSignUp = 'https://mdv-auth-json-server.herokuapp.com/users';
 
 @Injectable({
   providedIn: 'root'
@@ -27,12 +27,12 @@ export class AuthService {
     }
 
     getToken() {
-      return localStorage.getItem('token')
+      return localStorage.getItem('accessToken')
     }
 
-    setToken(accessToken: string) {
-      localStorage.setItem('accessToken', accessToken);
-      this.isAuthenticated$.next(accessToken !== '')
+    setToken(access_token: string) {
+      localStorage.setItem('accessToken', access_token);
+      this.isAuthenticated$.next(access_token !== '')
     }
 
 
@@ -42,19 +42,11 @@ export class AuthService {
     }
 
     login(user: User) {
-      this.auththenticatedUsers$ = this.getAllCredentials();
-      this.auththenticatedUsers$.pipe(
-        tap(res => console.log(res)),
-        map((res: any[]) => res.find((r) => r.email === user.email)),
-        // find(allUsers => allUsers == user),
-        tap(res => !!res ? this.router.navigate(['projects']) : this.notifyService.notification(`nope`)),
-        // tap(() => this.setToken())
-        ).subscribe();
-    // return this.httpClient.post<{accessToken: string}>(this.getUrlForSignIn(), user).pipe(
-    //   tap((res) => { this.setToken(res.accessToken) }),
-    //   tap((res) => console.log(res.accessToken)),
-    //   tap(() => this.router.navigate(['/projects']))
-    // ).subscribe()
+    return this.httpClient.post<{access_token: string}>(this.getUrlForSignIn(), user).pipe(
+      tap((res) => { this.setToken(res.access_token) }),
+      tap(() => this.router.navigate(['/projects'])),
+      tap(() => this.notifyService.notification('Successfully Logged In'))
+    ).subscribe()
   }
 
   signUp(user: User) {

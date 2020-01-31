@@ -7,7 +7,7 @@ import { AuthService } from '@mdv-nine/core-data';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'dashboard';
+  title = 'mdv nine';
 
   links = [
     { path: '/projects', icon: 'work', title: 'Projects'}
