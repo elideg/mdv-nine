@@ -6,15 +6,15 @@
   </mat-card-header>
   <mat-card-content>
     <mat-list>
-      <mat-list-item *ngFor="let project of projects" (click)="selected.emit(project)" class="mat-list-option">
+      <mat-list-item *ngFor="let project of projects" [routerLink]="[project.id]" class="mat-list-option border-bottom">
         <h3 mat-line>
           {{project.title}}
         </h3>
         <p mat-line>
           {{project.details}}
         </p>
-        <button class="mr-2" mat-mini-fab [routerLink]="[project.id]">
-          <mat-icon>code</mat-icon>
+        <button class="mr-2" mat-mini-fab (click)="selected.emit(project); $event.stopImmediatePropagation()">
+          <mat-icon>launch</mat-icon>
         </button>
         <button mat-mini-fab (click)="deleted.emit(project); $event.stopImmediatePropagation()">
           <mat-icon>close</mat-icon>

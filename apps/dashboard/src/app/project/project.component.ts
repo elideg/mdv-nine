@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotifyService } from 'libs/core-data/src/lib/notify.service';
 
 @Component({
-  selector: 'mdv-three-project',
+  selector: 'mdv-nine-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
